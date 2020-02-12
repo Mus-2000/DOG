@@ -1,68 +1,79 @@
+/*
+C# program that demonstrates the Dog class  and then display the results of caling methods  Bark and GetTag methods*/
+//Program.cs
 using System;
-namespace DogTest
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace Dog
 {
-    //Create an enum Gender
-    public enum Gender { Male,Female};
-    //Create a class Dog
-    class Dog
-    {
-        //Instance variables
-        private string name;
-        private string owner;
-        private int age;
-        private Gender gender;
-        //Constructor
-        public Dog(string name,string owner,int age,Gender gender)
-        {
-            this.name = name;
-            this.owner = owner;
-            this.age = age;
-            this.gender = gender;
-        }
-        //Method bark used to print the bark sound
-        public void Bark(int times)
-        {
-            for(int i = 0; i < times; i++)
-            {
-                Console.Write("Woof!");
-            }
-            Console.WriteLine();
-        }
-        //Method to get a dog went missing, means tag generator for dog
-        public string GetTag()
-        {
-            string tag = "If lost, call "+owner+". ";
-            if (gender == 0)
-            {
-                tag += "His name is " + name + " he is " + age.ToString();
-            }
-            else
-            {
-                tag += "Her name is " + name + " she is " + age.ToString();
-            }
-            if (age > 1)
-            {
-                tag += " years old.";
-            }
-            else
-            {
-                tag += " year old.";
-            }
-            return tag;
-        }
-    }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //Class Dog Test
-            Dog puppy = new Dog("Orion", "Shawn", 1, Gender.Male); // create object instance
-            puppy.Bark(3); // output: Woof!Woof!Woof!
-            Console.WriteLine(puppy.GetTag()); // output: If lost, call Shawn. His name is Orion and he is 1 year old.
+class Program
+{
+static void Main(string[] args)
+{
+/*Create an instance of Dog and all Bark and GetTag method*/
+Dog puppy = new Dog("Orian", "Shawn", 1, Gender.MALE);
+puppy.Bark(3);
+Console.WriteLine(puppy.GetTag());
 
-            Dog myDog =new Dog("Lileu", "Dale", 4, Gender.Female); // create object instance
-            myDog.Bark(1); // output: Woof!
-            Console.WriteLine(myDog.GetTag()); // output: If lost, call Dale. Her name is Lileu and she is 4 years old.
-        }
-    }
+
+/*Create an instance of Dog and all Bark and GetTag method*/
+Dog myDog = new Dog("Lileu", "Dale", 4, Gender.FEMALE);
+myDog.Bark(1);
+Console.WriteLine(myDog.GetTag());
+Console.ReadLine();
+
+Console.ReadLine();
+}
+}
+}
+-----------------------------------------------------------------------------------------------------------------------------
+
+//Dog.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace Dog
+{
+//Enum Gender for male and female
+enum Gender { MALE, FEMALE };
+//Class Dog class
+class Dog
+{
+private string name;
+private string owner;
+private int age;
+private Gender gender;
+
+/*constructor that to initialize
+the instace variables*/
+public Dog(string name,
+string owner, int age, Gender gender)
+{
+this.name = name;
+this.owner = owner;
+this.age = age;
+this.gender = gender;
+}
+
+/*Bark method that takes n as input
+* and print the Woof! n times*/
+public void Bark(int n)
+{
+for (int index = 0; index < n; index++)
+Console.Write("{0}", "Woof!");
+
+Console.WriteLine();
+}
+/*Method GetTag that returns the owner name and age as string value*/
+public String GetTag()
+{
+if (gender == Gender.MALE)
+return String.Format("If lost, call {0}. His name is {1} and he is {2} year old.", owner, name, age);
+else
+return String.Format("If lost, call {0}. Her name is {1} and she is {2} year old.", owner, name, age);
+}
+
+}
 }
